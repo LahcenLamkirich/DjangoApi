@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
 from .serializers import TaskSerializer
 from .models import Task
 
@@ -34,3 +35,10 @@ def taskById(request, pk):
     taskList = TaskSerializer(tasks, many=False)
 
     return Response(taskList.data)
+
+@api_view(['DELETE'])
+def deleteTask(request, pk):
+    task = Task.objects.get(id=pk)
+    task.delete()
+
+    return Response("Task Deleted Successfully !")

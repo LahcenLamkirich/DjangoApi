@@ -5,5 +5,6 @@ urlpatterns = [
     path('', views.apiTest),
     path('task-list/', views.taskList),
     path('create-task/', views.taskCreate),
-    path('detail-task/<str:pk>/', views.taskById)
+    path('detail-task/<str:pk>', views.taskById),
+    path('delete-task/<str:pk>', views.deleteTask)
 ]
