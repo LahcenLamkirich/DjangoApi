@@ -14,12 +14,13 @@ from .models import Task
 def apiTest(request):
     return Response("API TEST")
 
+#GET
 @api_view(['GET'])
 def taskList(request):
     tasks = Task.objects.all()
     taskList = TaskSerializer(tasks, many=True)
     return Response(taskList.data)
-
+#POST
 @api_view(['POST'])
 def taskCreate(request):
     task = TaskSerializer(data=request.data)
@@ -28,14 +29,14 @@ def taskCreate(request):
         task.save()
     
     return Response(task.data, status=HTTPStatus.CREATED)
-
+#GET BY ID
 @api_view(['GET'])
 def taskById(request, pk):
     tasks = Task.objects.get(id=pk)
     taskList = TaskSerializer(tasks, many=False)
 
     return Response(taskList.data)
-
+#DELETE
 @api_view(['DELETE'])
 def deleteTask(request, pk):
     task = Task.objects.get(id=pk)
