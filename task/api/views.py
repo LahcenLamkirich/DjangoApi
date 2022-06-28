@@ -9,7 +9,6 @@ from .serializers import TaskSerializer
 from .models import Task
 
 # Create your views here.
-
 @api_view(['GET'])
 def apiTest(request):
     return Response("Here is the Api Test")
