@@ -12,14 +12,18 @@ from .models import Task
 
 @api_view(['GET'])
 def apiTest(request):
-    return Response("API TEST")
+    return Response("Here is the Api Test")
 
 #GET
 @api_view(['GET'])
 def taskList(request):
     tasks = Task.objects.all()
     taskList = TaskSerializer(tasks, many=True)
-    return Response(taskList.data)
+    context = {
+        'taskList': taskList
+    }
+    return render(request, "api/index.html", context)
+
 #POST
 @api_view(['POST'])
 def taskCreate(request):
