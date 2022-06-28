@@ -20,7 +20,7 @@ def taskList(request):
     tasks = Task.objects.all()
     taskList = TaskSerializer(tasks, many=True)
     context = {
-        'taskList': taskList
+        'tasks': taskList.data
     }
     return render(request, "api/index.html", context)
 
